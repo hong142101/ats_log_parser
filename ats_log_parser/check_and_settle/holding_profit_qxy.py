@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
+
+path = os.path.abspath(os.path.join(os.path.dirname(__file__)))
+sys.path.append(path)
+from .sendmail import send_mail
 import logging
 import datetime as dt
 import pandas as pd
@@ -170,6 +175,9 @@ def holding_position_mysql_profit(settle_info):
 
     holding_profit_data = pd.DataFrame(holding_profit_data, columns=column)
     holding_profit_data.to_csv(holding_path, index=False)
+
+    if settle_info.send_holding_mail is True:
+        send_mail(holding_profit_file, holding_path, settle_info.mail_account, settle_info.mail_password, settle_info.to_mail)
 
     if os.path.exists(holding_path):
         return True

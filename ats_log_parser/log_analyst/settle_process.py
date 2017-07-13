@@ -93,6 +93,14 @@ class SettleInformation:
         # 持仓记录的位置
         self.holding_profit_folder = './holding_positions_profit'
 
+        # 是否需要发送持仓邮件
+        self.send_holding_mail = False
+        # 邮箱账号密码
+        self.mail_account = ''
+        self.mail_password = ''
+        # 目的地邮箱
+        self.to_mail = ''
+
         # 是否需要计算该账户理论净值
         self.profit_data = False
         # 计算账户理论净值生成的csv文件的位置
